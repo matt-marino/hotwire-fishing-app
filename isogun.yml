@@ -1,0 +1,23 @@
+# https://development.shopify.io/tools/dev/railgun/Railgun-Config
+name: fishing
+
+vm:
+  ip_address: 192.168.64.241
+  memory: 2G
+  cores: 2
+
+services:
+  - redis
+  - memcached
+  # - toxiproxy
+  - mysql
+  # - elasticsearch
+  # - zookeeper
+  # - argus
+  # - magellan
+  # - imagery
+  - nginx
+  # - kafka
+
+hostnames:
+  - fishing.myshopify.io: {proxy_to_host_port: 27952}

@@ -1,0 +1,8 @@
+<%= turbo_stream.update "stats" do %>
+    <%= render "tackle_box_items/stats", fish_catches: @fish_catches %>
+<% end %>
+
+# first argument is the id of the turbo frame, second argument is the content it is replacing with
+<%= turbo_stream.replace @fish_catch, @fish_catch %>
+
+<%= render_flash_stream %>

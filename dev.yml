@@ -1,0 +1,80 @@
+name: fishing
+
+type: rails
+
+up:
+  - ruby: 3.2.1
+  - node:
+      yarn: true
+      version: v16.17.0
+  - bundler
+  - redis
+  - memcached
+  - mysql
+  - database:
+      bootstrap: bin/rails db:create db:schema:load
+      migrate: bin/rails db:migrate db:test:prepare
+      host: fishing.railgun
+      user: root
+      password: ''
+      database: fishing_development
+
+packages:
+  - mysql_client_5_7:
+      or: [mysql_5_7]
+      conflicts: [mysql-connector-c, mysql, mysql-client]
+  - ngrok
+
+commands:
+  console: bin/rails console
+  server:
+    desc: 'Start server using Foreman with Procfile.dev'
+    run: bin/dev
+    aliases: ['s', 'w', 'watch']
+  tasks:
+    desc: 'Start the Sidekiq worker'
+    run: bundle exec sidekiq -q default
+  ngrok:
+    syntax: ''
+    desc: Start the ngrok tunnel
+    run: ngrok http 192.168.64.1:27952
+  debug:
+    desc: 'Connect to the byebug remote debugging server'
+    run: bundle exec byebug -R localhost:8989
+  test:
+    syntax:
+      argument: file
+      optional: args...
+    run: cd $USER_PWD && bin/rails test $@
+  typecheck:
+    desc: 'run Sorbet typechecking'
+    aliases: ['tc']
+    depends-isogun: false
+    run: bin/srb tc
+    subcommands:
+      ruby:
+        desc: 'run Sorbet typechecking'
+        run: bin/typecheck
+  update-rbis:
+    desc: 'updates the RBI files corresponding to gems listed in the Gemfile'
+    depends-isogun: false
+    run: |
+      bin/tapioca gem
+      bin/tapioca dsl
+  style:
+    desc: 'Run rubocop'
+    run: cd $USER_PWD && bundle exec rubocop
+    subcommands:
+      ruby:
+        syntax:
+          optional: --include-branch-commits --all-cops
+        desc: 'Run Rubocop checks. Add --include-branch-commits to run on all files changed on the current branch. Add --all-cops to run all the cops.'
+        run: cd $USER_PWD && bundle exec rubocop
+
+# These use fuzzy-matching, so you can (e.g.) `dev open app`
+open:
+  'My Application': https://fishing.myshopify.io
+  #ops:
+  # - https://datadog.link
+  # - https://bugsnag.link
+  # - https://kafka.link
