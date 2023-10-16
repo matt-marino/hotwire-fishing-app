@@ -1,0 +1,3 @@
+web: bin/rails server -b 192.168.64.1 -p 27952
+css: yarn build:css --watch
+build: yarn build --watch

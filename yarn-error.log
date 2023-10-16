@@ -1,0 +1,58 @@
+Arguments: 
+  /Users/matt-marino/.nvm/versions/node/v16.17.0/bin/node /Users/matt-marino/.dev/yarn/1.13.0/bin/yarn.js check --integrity
+
+PATH: 
+  /Users/matt-marino/.gem/ruby/3.2.1/bin:/opt/rubies/3.2.1/lib/ruby/gems/3.2.0/bin:/opt/rubies/3.2.1/bin:/Users/matt-marino/.dev/yarn/1.13.0/bin:/Users/matt-marino/.nvm/versions/node/v16.17.0/bin:/Users/matt-marino/.yarn/bin:/Users/matt-marino/.config/yarn/global/node_modules/.bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/matt-marino/.pyenv/shims:/Users/matt-marino/.cargo/bin:/opt/dev/bin/user:/Users/matt-marino/Library/Python/3.10/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Users/matt-marino/.rvm/bin:/usr/local/mysql/bin:/opt/homebrew/opt/mysql-client/bin
+
+Yarn version: 
+  1.13.0
+
+Node version: 
+  16.17.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  TypeError: Cannot read properties of undefined (reading '@hotwired/stimulus@^3.2.2')
+      at /Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:47252:25
+      at Array.filter (<anonymous>)
+      at InstallationIntegrityChecker.<anonymous> (/Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:47251:38)
+      at Generator.next (<anonymous>)
+      at step (/Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:304:30)
+      at /Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:322:14
+      at new Promise (<anonymous>)
+      at new F (/Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:5228:28)
+      at InstallationIntegrityChecker.<anonymous> (/Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:301:12)
+      at InstallationIntegrityChecker.check (/Users/matt-marino/.dev/yarn/1.13.0/lib/cli.js:47300:21)
+
+npm manifest: 
+  {
+    "name": "fishing",
+    "private": "true",
+    "dependencies": {
+      "@hotwired/stimulus": "^3.2.2",
+      "@hotwired/turbo-rails": "^7.3.0",
+      "esbuild": "^0.19.4",
+      "debounce": "^1.2.1",
+      "nouislider": "^15.6.1",
+      "wnumb": "^1.2.0"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.4.16",
+      "postcss": "^8.4.31",
+      "tailwindcss": "^3.3.3",
+      "@tailwindcss/forms": "^0.5.6",
+      "postcss-import": "^15.1.0"
+    },
+    "scripts": {
+      "build:css": "tailwindcss --minify --postcss ./config/postcss.config.js -c ./config/tailwind.config.js -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+      "build": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
